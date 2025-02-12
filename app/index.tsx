@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Stack } from "expo-router"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const styles = StyleSheet.create({
     container: {
@@ -81,6 +82,33 @@ export default function TodoList() {
 
     const [task, setTask] = useState('');
     const [tasks, setTasks] = useState<{ id: number; value: string }[]>([]);
+
+    // 读取待办事项
+    useEffect(() => {
+        const loadTasks = async () => {
+            try {
+                const storedTasks = await AsyncStorage.getItem('tasks');
+                if (storedTasks){
+                    setTasks(JSON.parse(storedTasks));
+                }
+            } catch (err) {
+                console.error("加载失败:",err);
+            }
+        }
+        loadTasks();
+    },[]);
+
+    // 每次任务列表更新时保存
+    useEffect(() => {
+        const saveTasks = async () => {
+            try {
+                await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+            } catch (err) {
+                console.error("保存失败:",err);
+            }
+        };
+        saveTasks();
+    },[tasks]);
 
     const addTask = () => {
         if (task.trim()) {
