@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.mikudayo.MyNote",
+  "applicationId": "com.mikudayo.MyTodo",
   "variantName": "release",
   "elements": [
     {

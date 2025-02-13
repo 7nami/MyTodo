@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MyNote",
-    "slug": "MyNote",
+    "name": "MyTodo",
+    "slug": "MyTodo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.mikudayo.MyNote"
+      "package": "com.mikudayo.MyTodo"
     },
     "web": {
       "bundler": "metro",
